@@ -1,9 +1,7 @@
-from rest_framework import viewsets
-from django.shortcuts import render  # Import render for the index view
-from .models import Menu, Booking
-from .serializers import MenuSerializer, BookingSerializer
+from rest_framework import viewsets, generics
+from .models import Menu, Booking, MenuItem
+from .serializers import MenuSerializer, BookingSerializer, MenuItemSerializer
 
-# API viewsets
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
@@ -12,6 +10,10 @@ class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
-# Web page view for home page
-def index(request):
-    return render(request, 'index.html', {})
+class MenuItemsView(generics.ListCreateAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+
+class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
