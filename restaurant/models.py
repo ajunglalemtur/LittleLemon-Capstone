@@ -14,7 +14,7 @@ class Menu(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} : {str(self.price)}'
 
 class Booking(models.Model):
     name = models.CharField(max_length=100)

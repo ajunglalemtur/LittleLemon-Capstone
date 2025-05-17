@@ -7,7 +7,8 @@ router.register(r'menu', MenuViewSet)
 router.register(r'booking', BookingViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
-    path('menu/items', MenuItemsView.as_view(), name='menu-items'),
-    path('menu/items/<int:pk>', SingleMenuItemView.as_view(), name='single-menu-item'),
+    path('', include(router.urls)),  # include router without 'api/' prefix here
+    path('menu-items/', MenuItemsView.as_view(), name='menu-items'),  # fixed to menu-items
+    path('menu-items/<int:pk>/', SingleMenuItemView.as_view(), name='single-menu-item'),
 ]
+
